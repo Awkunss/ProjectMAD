@@ -52,6 +52,11 @@ def serve_menu():
             number2 = get_number_input(
                 prompt="Input number b in base " + str(base) + ": ", base=base
             )
+            while operation == "/" and inp_base_to_dec(number2, base) == 0:
+                print("Cannot divide by zero. Please input another denominator.")
+                number2 = get_number_input(
+                    prompt="Input number b in base " + str(base) + ": ", base=base
+                )
 
             match operation:
                 case "+":
@@ -64,10 +69,7 @@ def serve_menu():
                     print("The result is " + multi(number1, number2, base))
 
                 case "/":
-                    try:
-                        ...
-                    except ZeroDivisionError:
-                        print("For god's sake you cannot divide by zero.")
+                    ...
 
 
 def get_number_input(base, prompt=None):
