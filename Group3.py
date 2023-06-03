@@ -1,4 +1,9 @@
-# Convert 1 digit from input base to decimal
+# Consider throwing exceptions when input is out of range in later programs
+# (It save time as the program does not need to iterate over the input string twice
+#  to check for validity and then changing bases)
+
+
+# Convert 1 digit from input base to an integer
 def hex_to_digit(k):
     if "0" <= k <= "9":
         return int(k)
@@ -6,7 +11,7 @@ def hex_to_digit(k):
         return ord(k) - 65 + 10
 
 
-# Convert 1 digit from decimal to output base
+# Convert 1 digit from an integer to output base
 def digit_to_hex(k):
     if 0 <= k <= 9:
         return str(k)
@@ -14,7 +19,7 @@ def digit_to_hex(k):
         return chr(k - 10 + 65)
 
 
-# Convert number from input base to decimal
+# Convert number from input base to an integer
 def inp_base_to_dec(n, inputBase):
     n = str(n)
     power = 1
@@ -25,7 +30,7 @@ def inp_base_to_dec(n, inputBase):
     return res
 
 
-# Convert number from decimal to output base
+# Convert number from an integer to output base
 def dec_to_out_base(n: int, outputBase: int):
     res = ""
     while n > 0:
@@ -34,7 +39,7 @@ def dec_to_out_base(n: int, outputBase: int):
     return res
 
 
-# Convert float part of number from input base to decimal
+# Convert fractional part of number from input base to float
 def inp_base_to_dec_float(n: str, inputBase: int):
     power = 1 / inputBase
     res = 0
@@ -91,7 +96,3 @@ def multi(a, b, inputBase):
         res = add(res, temp, inputBase)
         zeros += "0"
     return res
-
-
-if "__main__" == __name__:
-    print(add("1234", "325", 7))

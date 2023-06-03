@@ -1,6 +1,7 @@
 from Group3 import *
 import pytest
-   
+
+
 def test_hex_to_digit():
     assert hex_to_digit("F") == 15
     assert hex_to_digit("A") == 10
@@ -53,4 +54,3 @@ def test_multiply():
     assert multi("50", "50", 16) == "1900"
     assert multi("50", "50", 10) == "2500"
     assert multi("FA", "CE", 16) == "C92C"
-    
