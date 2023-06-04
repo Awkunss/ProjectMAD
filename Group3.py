@@ -61,7 +61,7 @@ def add(a, b, inputBase):
         res = str(digit_to_hex(sum_ % inputBase)) + res
 
     if temp > 0:
-        res = str(hex_to_digit(temp)) + res
+        res = str(digit_to_hex(temp)) + res
 
     return res
 
@@ -74,6 +74,8 @@ def multi_digit(st, a, inputBase):
         multi = int(hex_to_digit(st[i])) * a + temp
         temp = multi // inputBase
         res = str(digit_to_hex(multi % inputBase)) + res
+    if temp > 0:
+        res = str(digit_to_hex(temp)) + res
     return res
 
 
@@ -88,6 +90,60 @@ def multi(a, b, inputBase):
         zeros += "0"
     return res
 
+#
+def minus(a,b, inputBase):
+    while len(a) > len(b):
+        b = "0" + b
+    while len(a) < len(b):
+        a = "0" + a
+
+    if a < b:
+        temp=a
+        a=b
+        b=temp
+    
+    temp = 0
+    res = ""
+    for i in range(len(a) - 1, -1, -1):
+        value_a = int(hex_to_digit(a[i])) 
+        value_b = int(hex_to_digit(b[i])) 
+        value_a = value_a - temp
+
+        if value_a < value_b:
+            minus = value_a + inputBase - value_b 
+            temp = 1
+        else:
+            minus = value_a - value_b
+            temp = 0
+        res = str(digit_to_hex( minus % inputBase)) + res
+    while res[0]=='0':
+        res=res[1:]
+    return res
+
+def div(st, a,inputBase):
+    number = 0
+    res = ""
+    a=hex_to_digit(a)
+    for i in range(0, len(st)):
+        number = number * inputBase + int(hex_to_digit(st[i]))
+        res = str(digit_to_hex(number // a)) + res
+        number = number % a
+    while res[0] == "0":
+        res = res[1:]
+    return res
+
+def mod(st, a, inputBase):
+    number = 0
+    a=hex_to_digit(a)
+    
+    for i in range(0, len(st)):
+        number = number * inputBase + int(hex_to_digit(st[i]))
+        number = number % a
+
+    return digit_to_hex(number)
 
 if "__main__" == __name__:
-    print(add("1234", "325", 7))
+    print(multi("50", "50", 16))
+    print(multi("50", "50", 10))
+    print(multi("FA", "CE", 16))
+    print(mod("FA", "E", 16))
