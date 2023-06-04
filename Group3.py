@@ -1,12 +1,16 @@
-# convert 1 digit from input base to decimal
+# Consider throwing exceptions when input is out of range in later programs
+# (It save time as the program does not need to iterate over the input string twice
+#  to check for validity and then changing bases)
+
+# Convert 1 digit from input base to an integer
 def hex_to_digit(k):
     if "0" <= k <= "9":
         return int(k)
     else:
         return ord(k) - 65 + 10
 
-
-# convert 1 digit from decimal to output base
+      
+# Convert 1 digit from an integer to output base
 def digit_to_hex(k):
     if 0 <= k <= 9:
         return str(k)
@@ -14,8 +18,8 @@ def digit_to_hex(k):
         return chr(k - 10 + 65)
 
 
-# convert number from input base to decimal
-def inp_base_to_dec(n, inputBase):  # n
+# Convert number from input base to an integer
+def inp_base_to_dec(n, inputBase):
     n = str(n)
     power = 1
     res = 0
@@ -25,8 +29,8 @@ def inp_base_to_dec(n, inputBase):  # n
     return res
 
 
-# convert number from decimal to output base
-def dec_to_out_base(n, outputBase):
+# Convert number from an integer to output base
+def dec_to_out_base(n: int, outputBase: int):
     res = ""
     while n > 0:
         res = digit_to_hex(n % outputBase) + res
@@ -34,8 +38,9 @@ def dec_to_out_base(n, outputBase):
     return res
 
 
-# convert float part of number from input base to decimal
-def inp_base_to_dec_float(n, inputBase):
+
+# Convert fractional part of number from input base to float
+def inp_base_to_dec_float(n: str, inputBase: int):
     power = 1 / inputBase
     res = 0
     for i in range(0, len(n)):
@@ -44,7 +49,8 @@ def inp_base_to_dec_float(n, inputBase):
     return res
 
 
-# add two number a and b in base inputBase
+
+# Add two number a and b in base inputBase
 def add(a, b, inputBase):
     while len(a) > len(b):
         b = "0" + b
@@ -66,7 +72,7 @@ def add(a, b, inputBase):
     return res
 
 
-# multi number st with digit a in base inputBase
+# Multiply number st with digit a in base inputBase
 def multi_digit(st, a, inputBase):
     temp = 0
     res = ""
@@ -79,7 +85,7 @@ def multi_digit(st, a, inputBase):
     return res
 
 
-# multi number a with number b in base inputBase
+# Multiply number a with number b in base inputBase
 def multi(a, b, inputBase):
     zeros = ""
     res = ""
@@ -89,6 +95,7 @@ def multi(a, b, inputBase):
         res = add(res, temp, inputBase)
         zeros += "0"
     return res
+
 
 #
 def minus(a,b, inputBase):
