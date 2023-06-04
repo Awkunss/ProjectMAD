@@ -13,11 +13,11 @@ def serve_menu():
     """Serve the menu to user"""
 
     # Print the menu
-    print("===OPTIONS TO SELECT===")
+    print("=========OPTIONS TO SELECT=========")
     for index, task in enumerate(tasks):
-        print(str(index + 1) + ": " + task)
+        print(str(index + 1) + ") " + task)
 
-    print("0: Quit")
+    print("0) Quit")
 
     match get_option():
         case 1:
@@ -52,8 +52,22 @@ def serve_menu():
             number2 = get_number_input(
                 prompt="Input number b in base " + str(base) + ": ", base=base
             )
+
             while operation == "/" and inp_base_to_dec(number2, base) == 0:
                 print("Cannot divide by zero. Please input another denominator.")
+                number2 = get_number_input(
+                    prompt="Input number b in base " + str(base) + ": ", base=base
+                )
+
+            while operation == "-" and inp_base_to_dec(number1, base) < inp_base_to_dec(
+                number2, base
+            ):
+                print(
+                    "The function of subtraction with subzero result has not been implemented."
+                )
+                number1 = get_number_input(
+                    prompt="Input number a in base " + str(base) + ": ", base=base
+                )
                 number2 = get_number_input(
                     prompt="Input number b in base " + str(base) + ": ", base=base
                 )
@@ -63,13 +77,17 @@ def serve_menu():
                     print("The result is " + add(number1, number2, base))
 
                 case "-":
-                    ...
+                    print("The result is " + minus(number1, number2, base))
 
                 case "*":
                     print("The result is " + multi(number1, number2, base))
 
                 case "/":
-                    ...
+                    print("The result is " + div(number1, number2, base), end="")
+                    modulo = mod(number1, number2, base)
+                    if inp_base_to_dec(modulo, base) > 0:
+                        print(", mod " + modulo)
+                    print()
 
 
 def get_number_input(base, prompt=None):

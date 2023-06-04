@@ -2,6 +2,7 @@
 # (It save time as the program does not need to iterate over the input string twice
 #  to check for validity and then changing bases)
 
+
 # Convert 1 digit from input base to an integer
 def hex_to_digit(k):
     if "0" <= k <= "9":
@@ -9,7 +10,7 @@ def hex_to_digit(k):
     else:
         return ord(k) - 65 + 10
 
-      
+
 # Convert 1 digit from an integer to output base
 def digit_to_hex(k):
     if 0 <= k <= 9:
@@ -38,7 +39,6 @@ def dec_to_out_base(n: int, outputBase: int):
     return res
 
 
-
 # Convert fractional part of number from input base to float
 def inp_base_to_dec_float(n: str, inputBase: int):
     power = 1 / inputBase
@@ -47,7 +47,6 @@ def inp_base_to_dec_float(n: str, inputBase: int):
         res += hex_to_digit(n[i]) * power
         power /= inputBase
     return res
-
 
 
 # Add two number a and b in base inputBase
@@ -98,56 +97,59 @@ def multi(a, b, inputBase):
 
 
 #
-def minus(a,b, inputBase):
+def minus(a, b, inputBase):
     while len(a) > len(b):
         b = "0" + b
     while len(a) < len(b):
         a = "0" + a
 
     if a < b:
-        temp=a
-        a=b
-        b=temp
-    
+        temp = a
+        a = b
+        b = temp
+
     temp = 0
     res = ""
     for i in range(len(a) - 1, -1, -1):
-        value_a = int(hex_to_digit(a[i])) 
-        value_b = int(hex_to_digit(b[i])) 
+        value_a = int(hex_to_digit(a[i]))
+        value_b = int(hex_to_digit(b[i]))
         value_a = value_a - temp
 
         if value_a < value_b:
-            minus = value_a + inputBase - value_b 
+            minus = value_a + inputBase - value_b
             temp = 1
         else:
             minus = value_a - value_b
             temp = 0
-        res = str(digit_to_hex( minus % inputBase)) + res
-    while res[0]=='0':
-        res=res[1:]
+        res = str(digit_to_hex(minus % inputBase)) + res
+    while res[0] == "0":
+        res = res[1:]
     return res
 
-def div(st, a,inputBase):
+
+def div(st, a, inputBase):
     number = 0
     res = ""
-    a=hex_to_digit(a)
+    a = hex_to_digit(a)
     for i in range(0, len(st)):
         number = number * inputBase + int(hex_to_digit(st[i]))
-        res = str(digit_to_hex(number // a)) + res
+        res = res + str(digit_to_hex(number // a))
         number = number % a
     while res[0] == "0":
         res = res[1:]
     return res
 
+
 def mod(st, a, inputBase):
     number = 0
-    a=hex_to_digit(a)
-    
+    a = hex_to_digit(a)
+
     for i in range(0, len(st)):
         number = number * inputBase + int(hex_to_digit(st[i]))
         number = number % a
 
-    return digit_to_hex(number)
+    return dec_to_out_base(number, inputBase)
+
 
 if "__main__" == __name__:
     print(multi("50", "50", 16))
