@@ -39,16 +39,6 @@ def dec_to_out_base(n: int, outputBase: int):
     return res
 
 
-# Convert fractional part of number from input base to float
-def inp_base_to_dec_float(n: str, inputBase: int):
-    power = 1 / inputBase
-    res = 0
-    for i in range(0, len(n)):
-        res += hex_to_digit(n[i]) * power
-        power /= inputBase
-    return res
-
-
 # Add two number a and b in base inputBase
 def add(a, b, inputBase):
     while len(a) > len(b):
@@ -122,7 +112,7 @@ def minus(a, b, inputBase):
             minus = value_a - value_b
             temp = 0
         res = str(digit_to_hex(minus % inputBase)) + res
-    while res[0] == "0":
+    while res[0] == "0" and res != "0":
         res = res[1:]
     return res
 
@@ -135,7 +125,7 @@ def div(st, a, inputBase):
         number = number * inputBase + int(hex_to_digit(st[i]))
         res = res + str(digit_to_hex(number // a))
         number = number % a
-    while res[0] == "0":
+    while res[0] == "0" and res != "0":
         res = res[1:]
     return res
 

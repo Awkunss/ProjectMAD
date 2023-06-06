@@ -63,7 +63,7 @@ def serve_menu():
                 number2, base
             ):
                 print(
-                    "The function of subtraction with subzero result has not been implemented."
+                    "The function of subtraction with subzero result has not been implemented. Please try again with a > b."
                 )
                 number1 = get_number_input(
                     prompt="Input number a in base " + str(base) + ": ", base=base

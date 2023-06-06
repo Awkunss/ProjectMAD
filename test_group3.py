@@ -52,5 +52,12 @@ def test_add():
 
 def test_multiply():
     assert multi("50", "50", 16) == "1900"
-    assert multi("50", "50", 10) == "2500"
+    assert multi("50", "27", 10) == "1350"
     assert multi("FA", "CE", 16) == "C92C"
+
+
+def test_minus():
+    assert minus("50", "4F", 16) == "1"
+    assert minus("100", "50", 10) == "50"
+    assert minus("FA", "CE", 16) == "2C"
+    assert minus("50", "50", 16) == "0"
