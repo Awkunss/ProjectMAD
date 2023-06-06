@@ -121,9 +121,9 @@ def div(st, a, inputBase):
     number = 0
     res = ""
     a = hex_to_digit(a)
-    for i in range(0, len(st)):
-        number = number * inputBase + int(hex_to_digit(st[i]))
-        res = res + str(digit_to_hex(number // a))
+    for i in range(len(st)):
+        number = number * inputBase + hex_to_digit(st[i])
+        res += str(digit_to_hex(number // a))
         number = number % a
     while res[0] == "0" and res != "0":
         res = res[1:]
@@ -135,7 +135,7 @@ def mod(st, a, inputBase):
     a = hex_to_digit(a)
 
     for i in range(0, len(st)):
-        number = number * inputBase + int(hex_to_digit(st[i]))
+        number = number * inputBase + hex_to_digit(st[i])
         number = number % a
 
     return dec_to_out_base(number, inputBase)

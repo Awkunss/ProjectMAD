@@ -59,6 +59,14 @@ def serve_menu():
                     prompt="Input number b in base " + str(base) + ": ", base=base
                 )
 
+            while operation == "/" and inp_base_to_dec(number2, base) >= base:
+                print(
+                    "This feature (dividing by a number larger or equals than base) has not been implemented yet."
+                )
+                number2 = get_number_input(
+                    prompt="Input number b in base " + str(base) + ": ", base=base
+                )
+
             while operation == "-" and inp_base_to_dec(number1, base) < inp_base_to_dec(
                 number2, base
             ):
