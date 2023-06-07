@@ -1,7 +1,18 @@
-# Consider throwing exceptions when input is out of range in later programs
-# (It save time as the program does not need to iterate over the input string twice
-#  to check for validity and then changing bases)
+"""A collection of functions for performing calculations in different bases.
 
+The module provides functions for converting digits between different bases, 
+converting numbers between bases, performing addition, multiplication, subtraction,
+division, and modulo operations in a given base.
+
+The module assumes that the input and output bases are between 2 and 16, 
+and that the digits used to represent values greater than 9 are the uppercase letters A-F.
+
+Example usage:
+    print(multi("50", "50", 16))  # prints "1900"
+    print(multi("50", "50", 10))  # prints "2500"
+    print(multi("FA", "CE", 16))  # prints "E38C"
+    print(mod("FA", "E", 16))  # prints "A"
+"""
 
 # Convert 1 digit from input base to an integer
 def hex_to_digit(k):

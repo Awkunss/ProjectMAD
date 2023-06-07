@@ -1,8 +1,20 @@
+"""A CLI for converting numbers between different bases and performing calculations in a given base.
+
+Usage: python main.py
+
+The user is presented with a menu that allows them to select between two options:
+converting a number to another base, or doing calculations in a given base. 
+The module provides helper functions for getting user input and performing calculations in a given base.
+"""
+
+
 from Group3 import *
 import sys
 
+# Define the number of tasks in the menu
 NUMBER_OF_TASKS = 2
 
+# Define the tasks in the menu
 tasks = [
     "Convert a number to another base",
     "Do calculations in a given base",
@@ -10,7 +22,11 @@ tasks = [
 
 
 def serve_menu():
-    """Serve the menu to user"""
+    """Print a menu with two options and handle user input.
+
+    The function prints a menu with two options: converting a number to another base, or doing calculations in a given base.
+    It then prompts the user to select an option and handles their input accordingly.
+    """
 
     # Print the menu
     print("=========OPTIONS TO SELECT=========")
@@ -19,8 +35,10 @@ def serve_menu():
 
     print("0) Quit")
 
+    # Handle user input
     match get_option():
         case 1:
+            # Convert a number to another base
             input_base = get_int(
                 "Enter base to input [2..16]: ", lower_bound=2, upper_bound=16
             )
@@ -35,6 +53,7 @@ def serve_menu():
             )
 
         case 2:
+            # Do calculations in a given base
             operation: str
             while True:
                 operation = input("Choose an operation [+, -, *, /]: ").strip()
@@ -80,6 +99,7 @@ def serve_menu():
                     prompt="Input number b in base " + str(base) + ": ", base=base
                 )
 
+            # Perform the calculation
             match operation:
                 case "+":
                     print("The result is " + add(number1, number2, base))
@@ -99,11 +119,18 @@ def serve_menu():
 
 
 def get_number_input(base, prompt=None):
-    """Get number input in a given base.
+    """Prompt the user to enter a number in a given base and return it as a string.
+
     Args:
-        base (int): base of the inputted number
-        prompt (str): the prompt to print out
+        base (int): The base of the inputted number.
+        prompt (str, optional): The prompt to display to the user. Defaults to None.
+
+    Returns:
+        str: The user's input as a string.
+
+    The function prompts the user to enter a number in the given base and returns it as a string. If the user enters an invalid input (i.e. a character that is not a valid digit in the given base), the function prints an error message and prompts the user to enter the number again. The function supports bases from 2 to 16, using the digits 0-9 and the letters A-F to represent values 10-15.
     """
+
     if not prompt:
         prompt = "Enter a number in base " + str(base) + ": "
 
@@ -126,7 +153,13 @@ def get_number_input(base, prompt=None):
 
 
 def get_option():
-    """Get an option from menu"""
+    """Prompt the user to enter an option from the menu and return it as an integer.
+
+    Returns:
+        int: The user's selected option as an integer.
+
+    The function prints a prompt to the user to enter an option from the menu and returns the user's input as an integer. The function validates the user's input to ensure that it is within the range of valid options (0 to NUMBER_OF_TASKS). If the user enters an invalid input, the function prints an error message and prompts the user to enter the option again. If the user enters 0, the function prints "Quit" and exits the program.
+    """
     print()
     option = get_int(
         "Enter your choice [0.." + str(NUMBER_OF_TASKS) + "]: ",
@@ -140,11 +173,17 @@ def get_option():
 
 
 def get_int(prompt, lower_bound=None, upper_bound=None):
-    """Get an integer from stdin, re-prompt if input is invalid
+    """Get an integer from stdin, re-prompt if input is invalid.
+
     Args:
-        prompt (str): prompt to print out to user
-        lower_bound (int): The lowest valid number that the user can input
-        upper_bound (int): The greatest valid number that the user can input
+        prompt (str): The prompt to display to the user.
+        lower_bound (int, optional): The lowest valid number that the user can input. Defaults to None.
+        upper_bound (int, optional): The greatest valid number that the user can input. Defaults to None.
+
+    Returns:
+        int: The user's input as an integer.
+
+    The function prompts the user to enter an integer and returns it. If the user enters an invalid input (i.e. a non-integer), the function prints an error message and prompts the user to enter the number again. If `lower_bound` or `upper_bound` are specified, the function checks that the user's input is within the specified range and re-prompts the user if it is not. If the user enters a valid input, the function returns it as an integer.
     """
     while True:
         try:
